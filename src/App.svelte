@@ -87,19 +87,16 @@
   <br><br>
   <button class="normalButton">Tutorial</button>
   <br><br>
-  <select bind:value={optionSelected}>
-    <option value='Bag 01'>Bag 01</option>
-    <option value ='Bag 02'>Bag 02</option>
-  </select>
   <div class="container">
     <div class="bag-screen">
    
     </div>
- <BagItems></BagItems>
-    
     <div class="bag-container">
       <img src={bagImage} alt="Bag" class="bag" />
     
+    </div>
+    <div class="test-ui">
+     
     </div>
 
     <div class="phone">
@@ -160,7 +157,6 @@
   }
   .connectButton{
     position:relative;
-    bottom: 30%;
   }
   .normalButton {
     background-color: black;
@@ -189,6 +185,7 @@
     margin-top: 0px;
     margin-bottom: 30px;
     border-radius: 20px;
+    top:80%;
   }
 
   .nav-btn {
@@ -227,15 +224,13 @@
     font-size: 24px;
   }
   
-  .bag-container {
+   .bag-container {
     position: relative;
     width: 300px;
     height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right:10%;
-  }
+    right:30%;
+    margin-top:200px;
+  } 
   
   .bag {
     width: 100%; /* Automatically fits within the bag-container */
@@ -293,21 +288,15 @@
     padding: 10px;
     margin-top:30px;
   }
-  .bag-buttons{
-    margin-bottom:30px;
-  }
   .heading{
-    font-size: 30px;
-    bottom:40%;
+    font-size: 25px;
+    font-weight: bold;
+    top:20%;
   }
   .button-container{
     display: flex; /* Use flexbox for layout */
     justify-content: space-between; /* Space between buttons */
     margin-top: 10px;
   }
-  #map {
-        height:100%;
-        width: 100%;
-    }
 
 </style>
