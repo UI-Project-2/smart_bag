@@ -766,17 +766,19 @@ function toggleItem(item) {
     overflow-y: auto;
     overflow-x: hidden;
     height:400px;
+    margin-right:30px;
 
 }
 .items-location::-webkit-scrollbar {
   width: 6px; /* Set width of the scrollbar */
+  
 
 }
 
 .items-location::-webkit-scrollbar-thumb {
-  background-color:rgba(185, 181, 181, 0.5); /* Color of the scrollbar thumb */
+  background-color:#ece8e8e6; /* Color of the scrollbar thumb */
   border-radius: 10px; /* Optional: Round corners */
-  
+
 }
 
 .items-location::-webkit-scrollbar-track {
