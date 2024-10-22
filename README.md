@@ -1,1 +1,1 @@
-Samrt bag
+Smart bag
