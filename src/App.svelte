@@ -11,6 +11,7 @@
   let isShaking = false;
   let currentScreen ='home';
   let items=['laptop','lipbalm','keys','mobile','lipstick'];
+  let bagItemLoc =['front pocket','middle pocket','secure compartment','side pocket','big compartment'];
   const criteriaItems = {
     "Examination Hall": ["admit card", "pen", "pencil", "eraser", "id card"],
     "International Travel": ["passport", "visa", "boarding pass", "mobile"],
@@ -343,6 +344,7 @@ function toggleItem(item) {
       
 
     </div>
+    <p class="down-arrow">&darr;</p> 
     <div class="bag-container {isBagShaking ? 'shake' : ''}">
       <img src={bagImage} alt="Bag" class="bag" />
     </div>
@@ -606,6 +608,12 @@ function toggleItem(item) {
 }
 .checkbox-label input{
   margin-left: 100px;
+}
+.down-arrow{
+  font-size: 120px;
+  position: relative;
+  right: 21%;
+  bottom:50px;
 }
 
 
@@ -895,7 +903,7 @@ li {
     position: relative;
     width: 300px;
     height: auto;
-    right:25%;
+    right:30%;
     margin-top:200px;
   } 
   
