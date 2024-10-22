@@ -767,17 +767,19 @@ function toggleItem(item) {
     overflow-x: hidden;
     height:400px;
     margin-right:30px;
+    
 
 }
 .items-location::-webkit-scrollbar {
   width: 6px; /* Set width of the scrollbar */
-  
 
 }
 
 .items-location::-webkit-scrollbar-thumb {
-  background-color:#ece8e8e6; /* Color of the scrollbar thumb */
+  background-color:rgba(0, 0, 0, 0.3); /* Color of the scrollbar thumb */
   border-radius: 10px; /* Optional: Round corners */
+  
+  
 
 }
 
