@@ -254,7 +254,7 @@ function toggleItem(item) {
         remove_charger = true;
 
       }
-    }, 1500); // Charge every 500ms
+    }, 9000); // Charge every 9000ms
     addItemNotes ="Bag Charging";
     addItem = true;
   }
@@ -328,11 +328,7 @@ function toggleItem(item) {
       {:else}
       <button class="icon-button"><i class={battery_icon} style="color:white;"></i></button>
       {/if}
-      <span style="color:white; position:relative;right:5%;bottom:4%;"> {batteryLevel}%</span>
-      <!-- <div class="battery-container">
-        <span class="battery-icon">{getBatteryIcon()}</span>
-        <span class="battery-level">{batteryLevel}%</span>
-      </div> -->
+      <span style="color:white; position:relative;right:6%;bottom:4%;"> {batteryLevel}%</span>
       {#if lock===true}
       <button class="icon-button" on:click={unlockBag}><i class="fas fa-lock" style="color:red;"></i></button>
       {:else}
@@ -343,7 +339,6 @@ function toggleItem(item) {
       {:else}
       <button class="icon-button"><i class="material-icons" style="margin-top:5px; color:red; position:relative; top:4px;">phonelink_ring</i></button>
       {/if}
-      <button class="icon-button"><i class="fas fa-bell"></i></button>
       </div>
       
 
@@ -370,8 +365,12 @@ function toggleItem(item) {
        {:else if currentScreen === 'screen1' && connection === true}
        <div class="screen1" >
         <p class="heading">Smart Bag App</p>
-        <p>Connected to bag 01   <button class="normalButton1" on:click={disconnect}>Disconnect</button></p>
-        <p class="paragraph">Items</p>
+        <p style="margin-bottom:0px;">Connected to bag 01   <button class="normalButton1" on:click={disconnect}>Disconnect</button></p>
+        <div style="display:flex; margin-top:0px;">
+          <p class="paragraph" style="font-weight:bold;">Items in Bag</p>
+        <p style="margin-left:20px; font-weight:bold; margin-bottom:0px;">Add Priority</p>
+        </div>
+        
         {#if items.length===0}
         <p>Bag Empty</p>
         {:else}
@@ -395,7 +394,7 @@ function toggleItem(item) {
         </div>
         {/if}
         <div>
-          <p class="paragraph">
+          <p class="paragraph" style="font-weight:bold;">
             <i class="fas fa-exclamation-circle" style="color:red; font-size:15px;margin-top:0px;"></i> 
             Priority Items
             <button class="normalButton1" on:click={customize}>Add</button>
@@ -403,14 +402,14 @@ function toggleItem(item) {
           <div class="scrollable-important-items">
             <ul>
               {#each checkedItems as item}
-              <li>
+              <li style="margin-left:0px;">
               {#if items.includes(item)}
               <span>
-                <i class="fas fa-exclamation-circle" style="color:green;"></i> <!-- Unchecked icon -->
+                <i class="fas fa-exclamation-circle" style="color:green; font-size:15px;"></i> 
               </span>
               {:else}
               <span>
-                <i class="fas fa-exclamation-circle" style="color:red;"></i> <!-- Unchecked icon -->
+                <i class="fas fa-exclamation-circle" style="color:red; font-size:15px;"></i> 
               </span>
               {/if}
               {item}
@@ -605,6 +604,9 @@ function toggleItem(item) {
   justify-content: space-between; /* Space between text and checkbox */
   align-items: center; /* Center vertically */
 }
+.checkbox-label input{
+  margin-left: 100px;
+}
 
 
 
@@ -685,7 +687,7 @@ function toggleItem(item) {
     font-size: 12px;
   }
   .items-container {
-  max-height: 200px; /* Set the max height to restrict the list's size */
+  max-height: 105px; /* Set the max height to restrict the list's size */
   overflow-y: auto;  /* Add vertical scroll when content overflows */
   margin-bottom: 20px;
   margin-right: 0px; /* Space below the scrollable list */
@@ -719,7 +721,7 @@ function toggleItem(item) {
 }
 
 .scrollable-important-items {
-  max-height: 95px; /* Set the max height to restrict the list's size */
+  max-height: 90px; /* Set the max height to restrict the list's size */
   overflow-y: auto;  /* Add vertical scroll when content overflows */
   margin-bottom: 20px;
   margin-right: 0px; /* Space below the scrollable list */
@@ -727,7 +729,7 @@ function toggleItem(item) {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding:10px;
+  
   padding-top: 0px;
   
 }
@@ -893,7 +895,7 @@ li {
     position: relative;
     width: 300px;
     height: auto;
-    right:30%;
+    right:25%;
     margin-top:200px;
   } 
   
@@ -904,7 +906,7 @@ li {
   }
 
   .bag-screen {
-    width: 400px;
+    width: 300px;
     height: 50px;
     border: 10px solid black;
     display: flex;
