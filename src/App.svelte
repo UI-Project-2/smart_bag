@@ -226,72 +226,76 @@ function toggleItem(item) {
 
   // Initialize the battery level (in percentage)
   let batteryLevel = 100;
-  let isCharging = false;
-  let interval;
-  let battery_icon = "fa fa-battery-full";
-  let remove_charger = false;
+let isCharging = false;
+let interval, chargingInterval;
+let battery_icon = "fa fa-battery-full";
+let remove_charger = false;
+ 
 
-  // Function to decrease the battery level
-  function startBatteryDrain() {
-    interval = setInterval(() => {
-      if (batteryLevel > 0 && !isCharging) {
-        batteryLevel -= 1; // Decrease battery by 1%
-      }
-      getBatteryIcon();
-    }, 9000); // Decrease every minute
-    batteryLevel = batteryLevel;
-    getBatteryIcon();
-  }
-
-  // Function to stop the interval when the component is destroyed
-  onDestroy(() => {
-    clearInterval(interval);
-  });
-
-  // Function to start charging the battery
-  function chargeBattery() {
-    isCharging = true;
-    let chargingInterval = setInterval(() => {
-      if (batteryLevel < 100) {
-        batteryLevel += 1; // Increase battery by 1%
-      } else {
-        clearInterval(chargingInterval);
-        remove_charger = true;
-
-      }
-    }, 9000); // Charge every 9000ms
-    addItemNotes ="Bag Charging";
-    addItem = true;
-  }
-
-  function unPlugBattery()
-  {
-    isCharging = false;
-    remove_charger = false;
-    addItemNotes = "Charger Unpluged";
-    addItem = true;
-
-  }
-
-  // Function to get the battery icon based on the level
-  function getBatteryIcon() {
-    console.log(batteryLevel);
-    if (batteryLevel > 75) {
-      battery_icon= "fa fa-battery-full"; // Full battery
-    } else if (batteryLevel > 50) {
-      battery_icon="fa fa-battery-three-quarters" ; // 3/4 battery
-    } else if (batteryLevel > 25) {
-      battery_icon= "fa fa-battery-half"; // Half battery
-    } else if (batteryLevel > 10) {
-      battery_icon="fa fa-battery-quarter"; // Low battery
-    } else {
-      battery_icon="fa fa-battery-empty"; // Critical battery
+// Function to decrease the battery level
+function startBatteryDrain() {
+  if (interval) clearInterval(interval); // Clear any existing intervals
+  interval = setInterval(() => {
+    if (batteryLevel > 0 && !isCharging) {
+      batteryLevel -= 1; // Decrease battery by 1%
+    } else if (batteryLevel <= 0) {
+      clearInterval(interval); // Stop draining when battery is empty
     }
-  }
+    getBatteryIcon();
+  }, 9000); // Decrease every 9 seconds
+  getBatteryIcon();
+}
 
-  // Start battery drain on component mount
+// Function to stop the interval when the component is destroyed
+onDestroy(() => {
+  clearInterval(interval);
+  clearInterval(chargingInterval);
+});
+
+// Function to start charging the battery
+function chargeBattery() {
+  isCharging = true;
+  clearInterval(interval); // Stop draining when charging
+  chargingInterval = setInterval(() => {
+    if (batteryLevel < 100) {
+      batteryLevel += 1; // Increase battery by 1%
+    } else {
+      clearInterval(chargingInterval); // Stop charging when full
+      remove_charger = true;
+    }
+    getBatteryIcon();
+  }, 9000); // Charge every 9 seconds
+  addItemNotes = "Bag Charging";
+  addItem = true;
+}
+
+// Function to unplug the battery
+function unPlugBattery() {
+  isCharging = false;
+  remove_charger = false;
+  clearInterval(chargingInterval); // Stop charging when unplugged
+  addItemNotes = "Charger Unplugged";
+  addItem = true;
   startBatteryDrain();
-  
+}
+
+// Function to get the battery icon based on the level
+function getBatteryIcon() {
+  if (batteryLevel > 75) {
+    battery_icon = "fa fa-battery-full"; // Full battery
+  } else if (batteryLevel > 50) {
+    battery_icon = "fa fa-battery-three-quarters"; // 3/4 battery
+  } else if (batteryLevel > 25) {
+    battery_icon = "fa fa-battery-half"; // Half battery
+  } else if (batteryLevel > 10) {
+    battery_icon = "fa fa-battery-quarter"; // Low battery
+  } else {
+    battery_icon = "fa fa-battery-empty"; // Critical battery
+  }
+}
+
+// Start battery drain on component mount
+startBatteryDrain();
 </script>
 
 <main>
