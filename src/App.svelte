@@ -128,7 +128,6 @@ function toggleItem(item) {
       items.push(newItem.trim().toLowerCase()); // Add new item
       addItemNotes = `${newItem.toLowerCase()} added to the bag`; // Confirmation message
       alerts.add(newItem.toLowerCase() + " added to the bag!!!");
-      newItem = ''; // Clear input field
       addItem = true; // Show confirmation message
       showInput = false; // Hide input after adding
       if(currentScreen ==='screen1')
@@ -137,6 +136,11 @@ function toggleItem(item) {
       }
       important_items();
       console.log(missingElements);
+      const randomItem = bagItemLoc[Math.floor(Math.random() * bagItemLoc.length)];
+      items_loc[newItem] = randomItem;
+      items_loc = items_loc;
+      console.log(items_loc);
+      newItem='';
       
     }
     else if(newItem.trim()!==""){
@@ -648,11 +652,7 @@ function toggleItem(item) {
     margin-top: 150px;
 
   }
-  .items-location{
-    margin-left: 30px;
-    margin-top:100px;
-
-  }
+  
   .team-members{
     padding-left: 20px;
   }
@@ -760,7 +760,33 @@ function toggleItem(item) {
 .scrollable-important-items::-webkit-scrollbar-button {
   display: none; /* This will remove the top and bottom arrows */
 }
+.items-location{
+    margin-left: 60px;
+    margin-top:40px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height:400px;
 
+}
+.items-location::-webkit-scrollbar {
+  width: 6px; /* Set width of the scrollbar */
+
+}
+
+.items-location::-webkit-scrollbar-thumb {
+  background-color:rgba(185, 181, 181, 0.5); /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Optional: Round corners */
+  
+}
+
+.items-location::-webkit-scrollbar-track {
+  background: transparent; /* Optional: Set the track background */
+}
+
+/* Hide arrows for vertical scrollbar */
+.items-location::-webkit-scrollbar-button {
+  display: none; /* This will remove the top and bottom arrows */
+}
 .notifications{
   overflow-y: auto;
   overflow-x: hidden;
