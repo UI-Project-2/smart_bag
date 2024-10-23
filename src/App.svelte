@@ -225,7 +225,7 @@ function toggleItem(item) {
 
 
   // Initialize the battery level (in percentage)
-  let batteryLevel = 100;
+  let batteryLevel = 20;
 let isCharging = false;
 let interval, chargingInterval;
 let battery_icon = "fa fa-battery-full";
@@ -449,7 +449,7 @@ startBatteryDrain();
       {:else if currentScreen ==='battery' && connection === true}
       <div class="battery-status">
         <p class="heading">Battery Status</p>
-        {#if batteryLevel<=20}
+        {#if batteryLevel<=20 && isCharging === false}
         <p><i class="fas fa-exclamation-triangle" style="color:red"></i>  Please Charge Your Battery!!!</p>
         {/if}
         <p>Battery status: {batteryLevel} %</p>
