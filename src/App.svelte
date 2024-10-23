@@ -225,7 +225,7 @@ function toggleItem(item) {
 
 
   // Initialize the battery level (in percentage)
-  let batteryLevel = 20;
+let batteryLevel = 100;
 let isCharging = false;
 let interval, chargingInterval;
 let battery_icon = "fa fa-battery-full";
